@@ -1,0 +1,265 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Custom Variables ===== */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 240 5% 10%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 25% 95%;
+    --secondary-foreground: 240 5% 20%;
+
+    --muted: 240 4% 90%;
+    --muted-foreground: 240 3.8% 30%;
+
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 5% 90%;
+    --input: 240 5% 90%;
+    --ring: 240 5% 10%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 5% 10%;
+    --foreground: 0 0% 100%;
+
+    --card: 240 5% 12%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 240 5% 12%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 0 0% 100%;
+    --primary-foreground: 240 5% 10%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 3.7% 20%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 240 3.7% 25%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 3.7% 30%;
+    --input: 240 3.7% 30%;
+    --ring: 240 5% 80%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  * {
+    @apply border-border;
+  }
+}
+
+/* ===== Custom Background Gradient ===== */
+.bg-gradient-custom {
+  background: linear-gradient(to bottom, #e2e2e2, #c9d6ff);
+}
+
+.bg-gradient-custom-reverse {
+  background: linear-gradient(to bottom, #c9d6ff, #e2e2e2);
+}
+
+.bg-gradient-custom-dark {
+  background: linear-gradient(to bottom, #333333, #555555);
+}
+
+.bg-gradient-blue-purple {
+  background: linear-gradient(to bottom right, #3e3e3e, #363636);
+}
+
+@layer utilities {
+  .login-container {
+    @apply relative w-[850px] h-[550px] bg-white m-5 rounded-2xl shadow-lg overflow-hidden;
+  }
+
+  .login-container h1 {
+    @apply text-3xl my-2 font-bold;
+  }
+
+  .login-container p {
+    @apply text-sm my-3;
+  }
+
+  .login-form-box {
+    @apply absolute right-0 w-1/2 h-full bg-white flex flex-col justify-center items-center text-center text-[#333] px-10 transition-all duration-700 z-[1];
+  }
+
+  .login-container.active .login-form-box {
+    right: 50%;
+  }
+
+  .login-input-box {
+    @apply relative my-4 w-full;
+  }
+
+  .login-input-box input {
+    @apply w-full py-3 pr-12 pl-5 bg-gray-200 rounded-lg border-none outline-none text-base text-[#333] font-medium;
+  }
+
+  .login-input-box input::placeholder {
+    @apply text-gray-500 font-normal;
+  }
+
+  .login-input-box i {
+    @apply absolute right-5 top-1/2 transform -translate-y-1/2 text-xl;
+  }
+
+  .login-forgot-link {
+    @apply my-3;
+  }
+
+  .login-forgot-link a {
+    @apply text-sm text-[#333];
+  }
+
+  .login-btn {
+    @apply w-full h-12 bg-[#333] rounded-lg shadow-md border-none cursor-pointer text-base text-white font-semibold mt-4;
+  }
+
+  .login-social-icons {
+    @apply flex justify-center gap-3;
+  }
+
+  .login-social-icons a {
+    @apply inline-flex p-2 border-2 border-gray-300 rounded-lg text-2xl text-[#333];
+  }
+
+  .login-toggle-box {
+    @apply absolute w-full h-full;
+  }
+
+  .login-toggle-box::before {
+    content: "";
+    @apply absolute left-[-250%] w-[300%] h-full bg-[#333] rounded-2xl transition-all z-[2];
+    transition-duration: 1800ms;
+  }
+
+  .login-container.active .login-toggle-box::before {
+    left: 50%;
+  }
+
+  .login-toggle-panel {
+    @apply absolute w-1/2 h-full text-white flex flex-col justify-center items-center z-[2] transition-all duration-700;
+  }
+
+  .login-toggle-panel.toggle-left {
+    @apply left-0 delay-1000;
+  }
+
+  .login-container.active .login-toggle-panel.toggle-left {
+    @apply -left-1/2 delay-500;
+  }
+
+  .login-toggle-panel.toggle-right {
+    @apply -right-1/2 delay-500;
+  }
+
+  .login-container.active .login-toggle-panel.toggle-right {
+    @apply right-0 delay-1000;
+  }
+
+  .login-toggle-panel .login-btn {
+    @apply w-40 h-12 bg-transparent border-2 border-white shadow-none;
+  }
+
+  .spinner {
+    @apply w-10 h-10 border-4 border-gray-300 border-t-primary rounded-full animate-spin;
+  }
+
+  .spinner-small {
+    @apply w-6 h-6 border-2 border-gray-300 border-t-primary rounded-full animate-spin;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media screen and (max-width: 650px) {
+    .login-container {
+      @apply h-[calc(100vh-40px)] w-[95vw];
+    }
+
+    .login-form-box {
+      @apply bottom-0 w-full h-[70%] px-5;
+    }
+
+    .login-container.active .login-form-box {
+      @apply right-0 bottom-[30%];
+    }
+
+    .login-toggle-box::before {
+      @apply left-0 top-[-270%] w-full h-[300%] rounded-[20vw];
+    }
+
+    .login-container.active .login-toggle-box::before {
+      @apply top-[70%];
+    }
+
+    .login-container.active .login-toggle-panel.toggle-left {
+      @apply left-0 -top-[30%];
+    }
+
+    .login-toggle-panel {
+      @apply w-full h-[30%];
+    }
+
+    .login-toggle-panel.toggle-left {
+      @apply top-0;
+    }
+
+    .login-toggle-panel.toggle-right {
+      @apply right-0 -bottom-[30%];
+    }
+
+    .login-container.active .login-toggle-panel.toggle-right {
+      @apply bottom-0;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .login-form-box {
+      @apply p-5;
+    }
+
+    .login-toggle-panel h1 {
+      @apply text-2xl;
+    }
+  }
+}
+
+/* Hide scroll bar on body */
+body::-webkit-scrollbar {
+  display: none;
+}
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
